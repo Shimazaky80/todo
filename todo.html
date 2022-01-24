@@ -10,9 +10,11 @@
 	<input type="text" id="todo-title" />
 	<button onclick="addTodo()">Add Todo</button>
 
+	<div id="todo-list"></div>
+
 	<script>
 
-		let todos = ['Get groceries', 'Wash car', 'Make dinner']
+		const todos = ['Get groceries', 'Wash car', 'Make dinner']
 
 		render()
 
@@ -20,21 +22,25 @@
 		// html button click
 		function addTodo () {
 			// grab html text box id
-			let txtbox = document.getElementById('todo-title')
+			const txtbox = document.getElementById('todo-title')
 			// save the value typed in the html text box
-			let title = txtbox.value
+			const title = txtbox.value
 			todos.push(title)
 
 			render()
 		}
 
 		function render () {
+			// reset our list
+			document.getElementById('todo-list').innerText = ''
+
 			// looping through each item in the array
 			todos.forEach (
 				function(todoTitle) {
-					let htmlEl = document.createElement('div')
+					const htmlEl = document.createElement('div')
 					htmlEl.innerText = todoTitle
-					document.body.appendChild(htmlEl)
+					const todoList = document.getElementById('todo-list')
+					todoList.appendChild(htmlEl)
 				}
 			)
 		}
