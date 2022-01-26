@@ -14,15 +14,25 @@
 
 	<script>
 
-		const todos = [{
-			title: 'Get groceries',
-			dueDate: '2022-01-04'
-		}, {
-			title: 'Wash car',
-			dueDate: '2022-02-03'
-		}, {title: 'Make dinner',
-			dueDate: '2022-03-04'
-		}]
+		const todos = [
+			{
+				title: 'Get groceries',
+				dueDate: '2022-01-04',
+				id: 1
+			}, 
+		
+			{
+				title: 'Wash car',
+				dueDate: '2022-02-03',
+				id: 2
+			}, 
+
+			{
+				title: 'Make dinner',
+				dueDate: '2022-03-04',
+				id: 3
+			}
+		]
 
 		render()
 
@@ -36,12 +46,20 @@
 
 			const datePicker = document.getElementById('date-picker')
 			const dueDate = datePicker.value;
+
+			const id = new Date().getTime()
+
 			todos.push({
 				title: title,
-				dueDate: dueDate
+				dueDate: dueDate,
+				id: id
 			})
 
 			render()
+		}
+
+		function deleteTodo() {
+			console.log('delete!')
 		}
 
 		function render () {
@@ -53,6 +71,17 @@
 				function(todos) {
 					const htmlEl = document.createElement('div')
 					htmlEl.innerText = todos.title + ' ' + todos.dueDate
+
+					// creating a button element and appending 
+					// to the page
+					const deleteBtn = document.createElement('button')
+					deleteBtn.innerText = 'Delete'
+					deleteBtn.style = 'margin-left: 12px;'
+					htmlEl.appendChild(deleteBtn)
+					// for any click event on the page
+					deleteBtn.onclick = deleteTodo
+					deleteBtn.id = todos.id
+
 					const todoList = document.getElementById('todo-list')
 					todoList.appendChild(htmlEl)
 				}
