@@ -22,8 +22,9 @@
 
       // adding todo to the array
       function addTodo() {
-        let textBox = document.getElementById("todo-title");
-        todos.push("new todo");
+        let txtBox = document.getElementById("todo-title");
+        let title = txtBox.value;
+        todos.push(title);
       }
     </script>
   </body>
