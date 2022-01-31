@@ -9,6 +9,15 @@
     <input id="todo-title" type="text" />
     <button onclick="addTodo()">Add Todo</button>
 
+    <!--
+      How it works:
+      when page loads, will load todos array, by calling the render() function
+      Then when input text box is filled and Add Todo button is clicked,
+      the value of the text box is added to the todos array
+      and call the render() function again, reset the list
+      and then re-rendered the updated list
+    -->
+
     <!-- 
       rendering our todo list inside this div
       instead of inside the body
@@ -16,7 +25,7 @@
     <div id="todo-list"></div>
 
     <script>
-      let todos = ["Get groceries", "Wash car", "Make dinner"];
+      const todos = ["Get groceries", "Wash car", "Make dinner"];
 
       // first time the code runs, will call this rende function
       // with the todos array above
@@ -26,9 +35,9 @@
       function addTodo() {
         // finding and grabbing todo-title id from html input text element
         // and saving it to js variable for later use
-        let txtBox = document.getElementById("todo-title");
+        const txtBox = document.getElementById("todo-title");
         // getting the actual typed value from the text box
-        let title = txtBox.value;
+        const title = txtBox.value;
         todos.push(title);
 
         // when button Add Todo is clicked, the todos array
@@ -44,11 +53,11 @@
         // looping through each todo. Each loop will create an element
         // with each todo as parameter
         todos.forEach(function (todoTitle) {
-          let element = document.createElement("div");
+          const element = document.createElement("div");
           element.innerText = todoTitle;
           // grap the html div element with todo-list id, and save it in the
           // js variable todoList
-          let todoList = document.getElementById("todo-list");
+          const todoList = document.getElementById("todo-list");
           todoList.appendChild(element);
         });
       }
