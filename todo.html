@@ -9,22 +9,48 @@
     <input id="todo-title" type="text" />
     <button onclick="addTodo()">Add Todo</button>
 
+    <!-- 
+      rendering our todo list inside this div
+      instead of inside the body
+    -->
+    <div id="todo-list"></div>
+
     <script>
       let todos = ["Get groceries", "Wash car", "Make dinner"];
 
-      // looping through each todo. Each loop will create an element
-      // with each todo as parameter
-      todos.forEach(function (todoTitle) {
-        let element = document.createElement("div");
-        element.innerText = todoTitle;
-        document.body.appendChild(element);
-      });
+      // first time the code runs, will call this rende function
+      // with the todos array above
+      render();
 
       // adding todo to the array
       function addTodo() {
+        // finding and grabbing todo-title id from html input text element
+        // and saving it to js variable for later use
         let txtBox = document.getElementById("todo-title");
+        // getting the actual typed value from the text box
         let title = txtBox.value;
         todos.push(title);
+
+        // when button Add Todo is clicked, the todos array
+        // will be rendered again with the value of the text input
+        render();
+      }
+
+      function render() {
+        // reset our list, clear the previous list before re-rendering it
+        // wipe out the list and replace it with empty string
+        document.getElementById("todo-list").innerHTML = "";
+
+        // looping through each todo. Each loop will create an element
+        // with each todo as parameter
+        todos.forEach(function (todoTitle) {
+          let element = document.createElement("div");
+          element.innerText = todoTitle;
+          // grap the html div element with todo-list id, and save it in the
+          // js variable todoList
+          let todoList = document.getElementById("todo-list");
+          todoList.appendChild(element);
+        });
       }
     </script>
   </body>
