@@ -7,6 +7,7 @@
   </head>
   <body>
     <input id="todo-title" type="text" />
+    <input id="date-picker" type="date" />
     <button onclick="addTodo()">Add Todo</button>
 
     <!--
@@ -25,7 +26,21 @@
     <div id="todo-list"></div>
 
     <script>
-      const todos = ["Get groceries", "Wash car", "Make dinner"];
+      const todos = [
+        // creating objects from the array
+        {
+          title: "Get groceries",
+          dueDate: "2022-02-04",
+        },
+        {
+          title: "Wash car",
+          dueDate: "2022-02-03",
+        },
+        {
+          title: "Make dinner",
+          dueDate: "2022-03-04",
+        },
+      ];
 
       // first time the code runs, will call this rende function
       // with the todos array above
@@ -38,7 +53,17 @@
         const txtBox = document.getElementById("todo-title");
         // getting the actual typed value from the text box
         const title = txtBox.value;
-        todos.push(title);
+
+        // finding and grabbing date-picker id from html input date element
+        // and saving it to js variable
+        const datePicker = document.getElementById("date-picker");
+        // getting the actual selected date
+        const dueDate = datePicker.value;
+        // change the string array to object
+        todos.push({
+          title: title,
+          dueDate: dueDate,
+        });
 
         // when button Add Todo is clicked, the todos array
         // will be rendered again with the value of the text input
@@ -52,9 +77,10 @@
 
         // looping through each todo. Each loop will create an element
         // with each todo as parameter
-        todos.forEach(function (todoTitle) {
+        // each todo is no longer a title, but an object
+        todos.forEach(function (todo) {
           const element = document.createElement("div");
-          element.innerText = todoTitle;
+          element.innerText = todo.title;
           // grap the html div element with todo-list id, and save it in the
           // js variable todoList
           const todoList = document.getElementById("todo-list");
