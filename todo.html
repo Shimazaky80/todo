@@ -80,7 +80,18 @@
         // each todo is no longer a title, but an object
         todos.forEach(function (todo) {
           const element = document.createElement("div");
-          element.innerText = todo.title;
+          // attaching dueDate beside todoTitle
+          element.innerText = todo.title + " " + todo.dueDate;
+
+          // creating a delete button
+          const deleteButton = document.createElement("button");
+          // changing the text inside the button
+          deleteButton.innerText = "Delete";
+          // adding style to the deleteButton
+          deleteButton.style = "margin-left: 12px;";
+          // adding this button to the end of each todos div element
+          element.appendChild(deleteButton);
+
           // grap the html div element with todo-list id, and save it in the
           // js variable todoList
           const todoList = document.getElementById("todo-list");
