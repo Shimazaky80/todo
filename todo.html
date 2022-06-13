@@ -26,6 +26,7 @@
     <div id="todo-list"></div>
 
     <script>
+      // *** MODEL - MANAGING DATA SECION ***
       let todos = [
         // creating objects from the array
         {
@@ -45,6 +46,33 @@
         },
       ];
 
+      // Code tha Creates a todo
+      function createTodo(title, dueDate) {
+        /* Easy way to create random numbers, using the .getTime() method from the Date function. Returns the current time in miliseconds */
+        const id = "" + new Date().getTime();
+
+        // change the string array to object
+        todos.push({
+          title: title,
+          dueDate: dueDate,
+          id: id,
+        });
+      }
+
+      // Code that deletes a todo
+      function removeTodo(idToDelete) {
+        todos = todos.filter(function (todo) {
+          // I the id of this todo matches idToDelete, return false
+          if (todo.id === idToDelete) {
+            return false;
+          }
+          // For everything else, return true
+          else {
+            return true;
+          }
+        });
+      }
+
       // first time the code runs, will call this rende function
       // with the todos array above
       render();
@@ -63,15 +91,7 @@
         // getting the actual selected date
         const dueDate = datePicker.value;
 
-        /* Easy way to create random numbers, using the .getTime() method from the Date function. Returns the current time in miliseconds */
-        const id = new Date().getTime();
-
-        // change the string array to object
-        todos.push({
-          title: title,
-          dueDate: dueDate,
-          id: id,
-        });
+        createTodo(title, dueDate);
 
         // when button Add Todo is clicked, the todos array
         // will be rendered again with the value of the text input
@@ -83,16 +103,7 @@
         const deleteButton = event.target;
         const idToDelete = deleteButton.id;
 
-        todos = todos.filter(function (todo) {
-          // I the id of this todo matches idToDelete, return false
-          if (todo.id === idToDelete) {
-            return false;
-          }
-          // For everything else, return true
-          else {
-            return true;
-          }
-        });
+        removeTodo(idToDelete);
 
         render();
       }
