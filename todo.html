@@ -26,7 +26,7 @@
     <div id="todo-list"></div>
 
     <script>
-      // *** MODEL - MANAGING DATA SECION ***
+      // *** MODEL SECTION *** - MANAGING DATA SECION
       let todos = [
         // creating objects from the array
         {
@@ -75,8 +75,9 @@
 
       // first time the code runs, will call this rende function
       // with the todos array above
-      render();
+      render(); // end of the MODEL section *********************************************************
 
+      // *** CONTROLELR SECTION *** - CODE THAT RESPONDS TO EVENTS FROM THE VIEW
       // adding todo to the array
       function addTodo() {
         // finding and grabbing todo-title id from html input text element
@@ -106,8 +107,9 @@
         removeTodo(idToDelete);
 
         render();
-      }
+      } // end of the CONTROLLER section ************************************************
 
+      // *** VIEW SECION - RENDERS THE VISUAL ELEMENTS AND DATA FROM THE MODEL SECTION ***
       function render() {
         // reset our list, clear the previous list before re-rendering it
         // wipe out the list and replace it with empty string
@@ -140,7 +142,7 @@
           const todoList = document.getElementById("todo-list");
           todoList.appendChild(element);
         });
-      }
+      } // end of the VIEW section *****************************************************
     </script>
   </body>
 </html>
